@@ -1,32 +1,35 @@
 import pygame
+from time import sleep
+import random
 
-def Game_Background():
+def Fishing_Line(button_pressed):
 	screen = pygame.display.set_mode((500, 500))
-	ULcorner = (0, 0)
-	LLcorner = (0, 500)
-	URcorner = (500, 0)
-	LRcorner = (500, 500)
-	Center = (250, 250)
-	LC = (0, 250)
-	RC = (500, 250)
+	x = y = 250
 	UC = (250, 0)
-	DC = (250, 500)
-
-	while True:
-		event = pygame.event.poll()
-		if event.type == pygame.QUIT:
-			break
-		screen.fill((77, 148, 255))
-		pygame.display.flip()
-	return
-
-def Fishing_Line(BUTTON):
-	if button_pressed == True:
+	WHITE = (255, 255, 255)
+	BACKGROUND = (77, 148, 255)
+	
+	if button_pressed != True:
+		print("LEMON")
+		
+	while button_pressed == True:
 		event = pygame.event.poll()
 		if event.type == pygame.QUIT:
 			break
 		elif event.type == pygame.MOUSEMOTION:
 			x, y = event.pos
-		
-		pygame.draw.line(screen, (0, 0, 0), UC, (x, y))
+			
+		screen.fill(BACKGROUND)
+		pygame.draw.line(screen, WHITE, UC, (x, y))
 		pygame.display.flip()
+		
+
+	if random.randint(0,1) == 0:
+		#led_on()
+		print("You got a fish!")
+	else:
+		print("Better luck next time!")
+	
+button_pressed = True
+
+Fishing_Line(button_pressed)
